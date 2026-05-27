@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SamirPORTFOLIO — Монтаж рилсов и шортсов</title>
+<title>HEXPORTFOLIO — Монтаж рилсов и шортсов</title>
 <meta name="description" content="Монтирую рилсы, шортсы и вертикальное видео. Быстро, ритмично, с вниманием к деталям.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #f5f2ed;
-  --ink: #111010;
-  --muted: rgba(17,16,16,0.45);
-  --border: rgba(17,16,16,0.1);
-  --accent: #c8392b;
-  --surface: #edeae4;
-  --white: #fafaf8;
+  --bg: #f4f1eb;
+  --ink: #111111;
+  --muted: rgba(17,17,17,0.45);
+  --border: rgba(17,17,17,0.08);
+  --accent: #bc2c1a;
+  --surface: #eae6de;
+  --white: #ffffff;
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -28,44 +28,53 @@ body {
   font-family: 'Manrope', sans-serif;
   overflow-x: hidden;
   cursor: default;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ── NAV ── */
+/* Кастомный скроллбар в духе минимализма */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--ink); }
+
+/* ── НАВИГАЦИЯ ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 2.5rem;
-  background: var(--bg);
+  padding: 1.5rem 3rem;
+  background: rgba(244, 241, 235, 0.85);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
 
 .logo {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.25rem;
-  letter-spacing: 0.12em;
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
   color: var(--ink);
   text-decoration: none;
+  line-height: 1;
 }
 .logo span { color: var(--accent); }
 
-.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links { display: flex; gap: 3rem; list-style: none; }
 .nav-links a {
   text-decoration: none;
   font-family: 'DM Mono', monospace;
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   color: var(--muted);
-  text-transform: lowercase;
-  transition: color 0.2s;
+  text-transform: uppercase;
+  transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .nav-links a:hover { color: var(--ink); }
 
 .nav-avail {
-  display: flex; align-items: center; gap: 6px;
+  display: flex; align-items: center; gap: 8px;
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--muted);
+  text-transform: uppercase;
 }
 .dot {
   width: 6px; height: 6px; border-radius: 50%;
@@ -73,56 +82,56 @@ nav {
   animation: pulse 2s ease-in-out infinite;
 }
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.1); }
 }
 
 /* ── HERO ── */
 #hero {
   min-height: 100vh;
   display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 8rem 2.5rem 4rem;
+  padding: 10rem 3rem 5rem;
   position: relative;
   border-bottom: 1px solid var(--border);
-  overflow: hidden;
 }
 
 .hero-bg-text {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 40%; left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(10rem, 28vw, 22rem);
-  color: rgba(17,16,16,0.04);
+  font-size: clamp(12rem, 32vw, 26rem);
+  color: rgba(17,17,17,0.03);
   white-space: nowrap;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   user-select: none;
   pointer-events: none;
-  line-height: 1;
+  line-height: 0.8;
 }
 
 .hero-label {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 1.5rem;
-  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 15px;
 }
 .hero-label::before {
   content: '';
   display: block;
-  width: 24px; height: 1px;
+  width: 32px; height: 1px;
   background: var(--muted);
 }
 
 .hero h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4rem, 12vw, 9rem);
-  line-height: 0.92;
+  font-size: clamp(5rem, 14vw, 11rem);
+  line-height: 0.88;
   letter-spacing: -0.01em;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
 }
 .hero h1 .accent { color: var(--accent); }
 
@@ -130,65 +139,68 @@ nav {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 3rem;
   flex-wrap: wrap;
 }
 
 .hero-desc {
-  max-width: 340px;
-  font-size: 0.875rem;
-  line-height: 1.75;
+  max-width: 420px;
+  font-size: 1rem;
+  line-height: 1.8;
   color: var(--muted);
+  font-weight: 400;
 }
 
-.hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.hero-actions { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
 
 .btn-primary {
   display: inline-block;
   text-decoration: none;
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  padding: 0.75rem 1.75rem;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2.25rem;
   background: var(--ink);
   color: var(--bg);
   border: 1px solid var(--ink);
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
 
 .btn-ghost {
   display: inline-block;
   text-decoration: none;
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  padding: 0.75rem 1.75rem;
-  border: 1px solid var(--border);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1rem 2.25rem;
+  border: 1px solid var(--ink);
   color: var(--ink);
-  transition: border-color 0.2s;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
-.btn-ghost:hover { border-color: var(--ink); }
+.btn-ghost:hover { background: rgba(17,17,17,0.05); transform: translateY(-2px); }
 
-/* ── TICKER ── */
+/* ── БЕГУЩАЯ СТРОКА ── */
 .ticker-wrap {
-  border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 0.75rem 0;
+  padding: 1.25rem 0;
   overflow: hidden;
   background: var(--white);
 }
 .ticker-track {
   display: flex;
   white-space: nowrap;
-  animation: ticker 20s linear infinite;
+  animation: ticker 25s linear infinite;
 }
 .ticker-track span {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  padding: 0 2rem;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  text-transform: uppercase;
+  padding: 0 3rem;
 }
 .ticker-track .sep { color: var(--accent); padding: 0; }
 @keyframes ticker {
@@ -196,52 +208,54 @@ nav {
   to { transform: translateX(-50%); }
 }
 
-/* ── SECTIONS ── */
-.section { padding: 5rem 2.5rem; }
+/* ── СЕКЦИИ ШАБЛОН ── */
+.section { padding: 8rem 3rem; }
 .section-header {
-  display: flex; align-items: center; gap: 1.25rem;
-  margin-bottom: 3rem;
+  display: flex; align-items: flex-end; gap: 2rem;
+  margin-bottom: 5rem;
 }
 .section-num {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.15em;
   color: var(--accent);
+  line-height: 1.6;
 }
 .section-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  letter-spacing: 0.04em;
-  line-height: 1;
+  font-size: clamp(3rem, 7vw, 5rem);
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+  text-transform: uppercase;
 }
 .section-line {
   flex: 1;
   height: 1px;
   background: var(--border);
+  margin-bottom: 0.5rem;
 }
 
-/* ── CASES ── */
+/* ── КЕЙСЫ / РАБОТЫ ── */
 #cases { border-bottom: 1px solid var(--border); }
 
 .cases-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  gap: 2rem;
 }
 
 .case-card {
   background: var(--white);
   position: relative;
   overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 9/13;
+  border: 1px solid var(--border);
+  aspect-ratio: 4/5;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .case-card:first-child {
   grid-column: span 2;
-  aspect-ratio: 16/7;
+  aspect-ratio: 16/9;
 }
 
 .case-thumb {
@@ -249,7 +263,7 @@ nav {
   object-fit: cover;
   display: block;
   background: var(--surface);
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .case-video {
@@ -257,54 +271,59 @@ nav {
   width: 100%; height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.4s ease;
 }
 .case-card:hover .case-video { opacity: 1; }
-.case-card:hover .case-thumb { transform: scale(1.03); }
+.case-card:hover .case-thumb { transform: scale(1.02); }
 
 .case-overlay {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 1.5rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  position: absolute; inset: 0;
+  padding: 2.5rem;
+  background: linear-gradient(to top, rgba(17,17,17,0.85) 0%, rgba(17,17,17,0.1) 60%, transparent 100%);
   display: flex; align-items: flex-end; justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-.case-info {}
+.case-card:hover .case-overlay { opacity: 1; }
+
 .case-tag {
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 4px;
+  color: var(--accent);
+  margin-bottom: 6px;
 }
 .case-name {
   font-family: 'Manrope', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #fff;
+  color: #ffffff;
 }
 .case-arrow {
-  width: 32px; height: 32px;
-  border: 1px solid rgba(255,255,255,0.4);
+  width: 48px; height: 48px;
+  border: 1px solid rgba(255,255,255,0.2);
   display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-  color: #fff;
-  flex-shrink: 0;
-  transition: background 0.2s, border-color 0.2s;
+  font-size: 18px;
+  color: #ffffff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
-.case-card:hover .case-arrow { background: var(--accent); border-color: var(--accent); }
+.case-card:hover .case-arrow { background: var(--white); color: var(--ink); border-color: var(--white); transform: rotate(45deg); }
 
 .case-placeholder {
   width: 100%; height: 100%;
-  background: var(--surface);
-  display: flex; align-items: center; justify-content: center;
+  background: var(--white);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   color: var(--muted);
+  text-transform: uppercase;
+  gap: 10px;
 }
 
-/* ── ABOUT ── */
+/* ── О БО МНЕ ── */
 #about {
   border-bottom: 1px solid var(--border);
   background: var(--white);
@@ -312,305 +331,307 @@ nav {
 
 .about-inner {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 5rem;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
   align-items: start;
 }
 
-.about-photo-wrap {
-  position: relative;
-}
+.about-photo-wrap { position: relative; }
 .about-photo {
   width: 100%;
   aspect-ratio: 3/4;
   object-fit: cover;
   display: block;
-  background: var(--surface);
+  background: var(--bg);
   border: 1px solid var(--border);
 }
 .about-photo-label {
   position: absolute;
-  bottom: 1rem; right: -1rem;
+  bottom: 1.5rem; left: 1.5rem;
   background: var(--ink);
   color: var(--bg);
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  padding: 6px 12px;
+  padding: 8px 16px;
 }
 
-.about-content {}
 .about-lead {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
-  line-height: 1.05;
-  letter-spacing: 0.02em;
-  margin-bottom: 1.75rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
 }
 .about-lead .accent { color: var(--accent); }
 
 .about-body {
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   line-height: 1.85;
   color: var(--muted);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
-.about-body p + p { margin-top: 1rem; }
+.about-body p + p { margin-top: 1.5rem; }
 
 .about-skills {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin-bottom: 2rem;
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 3.5rem;
 }
 .skill-tag {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  padding: 5px 12px;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  background: var(--bg);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 6px 16px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  text-transform: uppercase;
 }
 
 .about-problems {
   display: flex; flex-direction: column; gap: 0;
-  border: 1px solid var(--border);
+  border-top: 1px solid var(--border);
 }
 .problem-row {
-  padding: 1rem 1.25rem;
+  padding: 2rem 0;
   border-bottom: 1px solid var(--border);
 }
-.problem-row:last-child { border-bottom: none; }
 .problem-title {
-  font-size: 0.875rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
 }
 .problem-desc {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  letter-spacing: 0.02em;
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-/* ── PROCESS ── */
+/* ── ПРОЦЕСС РАБОТЫ ── */
 #process { border-bottom: 1px solid var(--border); }
 
 .process-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  margin-bottom: 3rem;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
 }
 .process-step {
   background: var(--white);
-  padding: 2rem 1.5rem;
+  padding: 3rem 2rem;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
 }
 .step-num {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 3rem;
-  color: rgba(17,16,16,0.06);
-  line-height: 1;
-  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  color: var(--accent);
+  line-height: 0.9;
 }
+.step-meta { margin-top: auto; }
 .step-title {
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 .step-desc {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  letter-spacing: 0.02em;
   color: var(--muted);
   line-height: 1.65;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 .step-tag {
   display: inline-block;
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  padding: 3px 8px;
-  background: var(--surface);
-  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  background: var(--bg);
+  color: var(--ink);
   border: 1px solid var(--border);
+  text-transform: uppercase;
 }
 
 .process-perks {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  gap: 1.5rem;
 }
 .perk {
-  background: var(--surface);
-  padding: 1.5rem;
-  display: flex; align-items: flex-start; gap: 1rem;
+  background: var(--white);
+  padding: 2.5rem;
+  border: 1px solid var(--border);
 }
 .perk-icon {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1;
-  flex-shrink: 0;
-  margin-top: 2px;
+  margin-bottom: 1.25rem;
 }
-.perk-text {}
 .perk-title {
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 .perk-desc {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  letter-spacing: 0.02em;
   color: var(--muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-/* ── CTA ── */
+/* ── СТА КНОПКА ── */
 .cta-banner {
   background: var(--ink);
-  padding: 4rem 2.5rem;
+  padding: 6rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 3rem;
   border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
 }
 .cta-text {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  letter-spacing: 0.02em;
   color: var(--bg);
-  line-height: 1;
+  line-height: 0.9;
+  text-transform: uppercase;
 }
 .cta-text span { color: var(--accent); }
 .btn-accent {
   display: inline-block;
   text-decoration: none;
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  padding: 0.875rem 2rem;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1.25rem 3rem;
   background: var(--accent);
-  color: #fff;
+  color: #ffffff;
   border: 1px solid var(--accent);
   white-space: nowrap;
-  transition: opacity 0.2s;
+  transition: all 0.3s ease;
 }
-.btn-accent:hover { opacity: 0.85; }
+.btn-accent:hover { opacity: 0.9; transform: scale(1.03); }
 
-/* ── CONTACTS ── */
+/* ── КОНТАКТЫ ── */
 #contacts { background: var(--white); }
 
 .contacts-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  gap: 1.5rem;
 }
 .contact-card {
   background: var(--bg);
-  padding: 2rem;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   text-decoration: none;
   color: var(--ink);
-  border-right: 0;
-  transition: background 0.15s;
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   position: relative;
-  overflow: hidden;
 }
 .contact-card::after {
-  content: '↗';
+  content: '→';
   position: absolute;
-  top: 1.25rem; right: 1.25rem;
-  font-size: 14px;
+  top: 2.5rem; right: 2.5rem;
+  font-size: 18px;
   color: var(--muted);
-  transition: color 0.2s, transform 0.2s;
+  transition: all 0.3s ease;
 }
-.contact-card:hover { background: var(--surface); }
-.contact-card:hover::after { color: var(--accent); transform: translate(2px, -2px); }
+.contact-card:hover { background: var(--white); border-color: var(--ink); }
+.contact-card:hover::after { color: var(--accent); transform: translateX(4px); }
 
 .contact-platform {
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
 }
 .contact-handle {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 600;
+  letter-spacing: -0.01em;
 }
 .contact-desc {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted);
-  letter-spacing: 0.04em;
-  margin-top: 4px;
+  letter-spacing: 0.02em;
+  margin-top: 6px;
 }
 
-/* ── FOOTER ── */
+/* ── ПОДВАЛ ── */
 footer {
-  border-top: 1px solid var(--border);
-  padding: 1.5rem 2.5rem;
+  padding: 2.5rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
+  background: var(--bg);
 }
 .footer-logo {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem;
-  letter-spacing: 0.1em;
+  font-size: 1.25rem;
+  letter-spacing: 0.15em;
   color: var(--ink);
   text-decoration: none;
 }
 .footer-logo span { color: var(--accent); }
 .footer-copy {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--muted);
+  text-transform: uppercase;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 768px) {
-  nav { padding: 1rem 1.25rem; }
-  .nav-avail { display: none; }
-  .section { padding: 3.5rem 1.25rem; }
-  #hero { padding: 7rem 1.25rem 3rem; }
-  .cases-grid { grid-template-columns: 1fr; }
-  .case-card:first-child { grid-column: span 1; aspect-ratio: 9/13; }
-  .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .about-photo-label { right: 0; }
-  .process-grid { grid-template-columns: 1fr 1fr; }
-  .process-perks { grid-template-columns: 1fr; }
-  .contacts-grid { grid-template-columns: 1fr; }
-  .cta-banner { flex-direction: column; align-items: flex-start; }
-  footer { flex-direction: column; text-align: center; align-items: center; }
+/* ── АДАПТИВНОСТЬ ── */
+@media (max-width: 1024px) {
+  .process-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .process-perks { grid-template-columns: 1fr; gap: 1rem; }
 }
-@media (max-width: 480px) {
+
+@media (max-width: 768px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-avail { display: none; }
+  .section { padding: 5rem 1.5rem; }
+  #hero { padding: 8rem 1.5rem 4rem; }
+  .cases-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .case-card:first-child { aspect-ratio: 4/5; }
+  .about-inner { grid-template-columns: 1fr; gap: 4rem; }
   .process-grid { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .contacts-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .cta-banner { padding: 4rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 2rem; }
+  footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#hero" class="logo"><span>SAMIR</span>PORTFOLIO</a>
+  <a href="#hero" class="logo"><span>HEX</span>PORTFOLIO</a>
   <ul class="nav-links">
     <li><a href="#cases">работы</a></li>
     <li><a href="#about">обо мне</a></li>
@@ -619,11 +640,10 @@ footer {
   </ul>
   <div class="nav-avail">
     <span class="dot"></span>
-    доступен для проектов
+    доступен для заказов
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-bg-text" aria-hidden="true">REELS</div>
   <div class="hero-label">video editor · reels specialist</div>
@@ -634,7 +654,7 @@ footer {
   </h1>
   <div class="hero-bottom">
     <p class="hero-desc">
-      Превращаю сырой материал в контент, который не скроллят дальше. Ритм, динамика, вовлечение — с первой секунды.
+      Превращаю сырой материал в динамичный контент, который удерживает внимание с первой секунды. Четкий ритм, визуальный стиль, удержание.
     </p>
     <div class="hero-actions">
       <a href="#cases" class="btn-primary">смотреть работы →</a>
@@ -643,7 +663,6 @@ footer {
   </div>
 </section>
 
-<!-- TICKER -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
     <span>Reels</span><span class="sep">✦</span>
@@ -661,7 +680,6 @@ footer {
   </div>
 </div>
 
-<!-- CASES -->
 <section id="cases" class="section">
   <div class="section-header">
     <span class="section-num">01</span>
@@ -670,11 +688,10 @@ footer {
   </div>
 
   <div class="cases-grid">
-    <!-- Замени src на свои превью и видео -->
     <div class="case-card" onclick="this.querySelector('video')?.play()">
-      <div class="case-placeholder">превью работы 1 — замени на своё изображение</div>
-      <!-- <img class="case-thumb" src="assets/work1.jpg" alt=""> -->
-      <!-- <video class="case-video" src="assets/work1.mp4" loop muted playsinline></video> -->
+      <div class="case-placeholder">
+        <span>[ Загрузите сюда превью работы 1 ]</span>
+      </div>
       <div class="case-overlay">
         <div class="case-info">
           <div class="case-tag">Reels · Travel</div>
@@ -685,7 +702,7 @@ footer {
     </div>
 
     <div class="case-card">
-      <div class="case-placeholder">превью работы 2</div>
+      <div class="case-placeholder"><span>[ превью работы 2 ]</span></div>
       <div class="case-overlay">
         <div class="case-info">
           <div class="case-tag">Reels · Lifestyle</div>
@@ -696,7 +713,7 @@ footer {
     </div>
 
     <div class="case-card">
-      <div class="case-placeholder">превью работы 3</div>
+      <div class="case-placeholder"><span>[ превью работы 3 ]</span></div>
       <div class="case-overlay">
         <div class="case-info">
           <div class="case-tag">Short · Fashion</div>
@@ -707,7 +724,7 @@ footer {
     </div>
 
     <div class="case-card">
-      <div class="case-placeholder">превью работы 4</div>
+      <div class="case-placeholder"><span>[ превью работы 4 ]</span></div>
       <div class="case-overlay">
         <div class="case-info">
           <div class="case-tag">Reels · Sport</div>
@@ -718,7 +735,7 @@ footer {
     </div>
 
     <div class="case-card">
-      <div class="case-placeholder">превью работы 5</div>
+      <div class="case-placeholder"><span>[ превью работы 5 ]</span></div>
       <div class="case-overlay">
         <div class="case-info">
           <div class="case-tag">Short · Food</div>
@@ -730,7 +747,6 @@ footer {
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section">
   <div class="section-header">
     <span class="section-num">02</span>
@@ -740,9 +756,8 @@ footer {
 
   <div class="about-inner">
     <div class="about-photo-wrap">
-      <!-- Замени на своё фото: <img class="about-photo" src="assets/photo.jpg" alt="Samir"> -->
       <div class="about-photo" style="display:flex;align-items:center;justify-content:center;">
-        <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--muted);">твоё фото</span>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;">[ Твоё Фото ]</span>
       </div>
       <div class="about-photo-label">Видеомонтажёр</div>
     </div>
@@ -754,8 +769,8 @@ footer {
         <span class="accent">доверяют</span>
       </h3>
       <div class="about-body">
-        <p>Специализируюсь на коротком контенте — рилсах, шортсах, вертикальном видео. Работаю с блогерами, брендами и всеми, кто хочет, чтобы их видео смотрели до конца.</p>
-        <p>Понимаю алгоритмы Instagram, TikTok и YouTube Shorts — делаю контент, который платформы продвигают. Каждый ролик это не просто склейка, а продуманная история за 30 секунд.</p>
+        <p>Специализируюсь на коротком динамичном контенте — рилсах, шортсах и концептуальных вертикальных видео. Работаю с блогерами и брендами, которые ценят чистоту подачи и высокий уровень вовлечения.</p>
+        <p>Знаю, как работают алгоритмы удержания контента на современных платформах. Каждый ролик — это не просто склейка кадров, а выверенная история, рассказанная за несколько десятков секунд.</p>
       </div>
 
       <div class="about-skills">
@@ -763,29 +778,28 @@ footer {
         <span class="skill-tag">After Effects</span>
         <span class="skill-tag">CapCut</span>
         <span class="skill-tag">Цветокоррекция</span>
-        <span class="skill-tag">Motion</span>
-        <span class="skill-tag">Вертикальное видео</span>
+        <span class="skill-tag">Motion Design</span>
+        <span class="skill-tag">Динамичный монтаж</span>
       </div>
 
       <div class="about-problems">
         <div class="problem-row">
           <div class="problem-title">Контент копится и теряет актуальность</div>
-          <div class="problem-desc">Снимаешь, но не успеваешь монтировать — я возьму это на себя.</div>
+          <div class="problem-desc">Вы снимаете исходники, но не успеваете их обрабатывать — я полностью разгружу этот процесс.</div>
         </div>
         <div class="problem-row">
-          <div class="problem-title">Монтаж отнимает твоё время</div>
-          <div class="problem-desc">Занимайся своим делом — я сделаю всё остальное.</div>
+          <div class="problem-title">Монтаж отнимает слишком много времени</div>
+          <div class="problem-desc">Фокусируйтесь на генерации идей и съемках, пока я создаю готовый продукт.</div>
         </div>
         <div class="problem-row">
-          <div class="problem-title">Видео не дотягивает до уровня</div>
-          <div class="problem-desc">Не хватает динамики и профессиональной подачи — исправлю это.</div>
+          <div class="problem-title">Видео не выглядит дорого</div>
+          <div class="problem-desc">Добавлю динамику, чистый звук, правильный цвет и профессиональную подачу.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROCESS -->
 <section id="process" class="section">
   <div class="section-header">
     <span class="section-num">03</span>
@@ -796,27 +810,35 @@ footer {
   <div class="process-grid">
     <div class="process-step">
       <div class="step-num">01</div>
-      <div class="step-title">Задача</div>
-      <div class="step-desc">Присылаешь материал и описываешь задачу. Обсуждаем стиль, формат и детали.</div>
-      <span class="step-tag">Бриф + материалы</span>
+      <div class="step-meta">
+        <div class="step-title">Задача</div>
+        <div class="step-desc">Обсуждаем формат, референсы, стиль и ключевые детали проекта.</div>
+        <span class="step-tag">Бриф + исходники</span>
+      </div>
     </div>
     <div class="process-step">
       <div class="step-num">02</div>
-      <div class="step-title">Монтаж</div>
-      <div class="step-desc">Собираю ролик: склейка, графика, звук, цветокоррекция. Всё для вау-эффекта.</div>
-      <span class="step-tag">Premiere + AE</span>
+      <div class="step-meta">
+        <div class="step-title">Монтаж</div>
+        <div class="step-desc">Сборка ролика: динамичная склейка, работа со звуком, графика и цвет.</div>
+        <span class="step-tag">Premiere + AE</span>
+      </div>
     </div>
     <div class="process-step">
       <div class="step-num">03</div>
-      <div class="step-title">Правки</div>
-      <div class="step-desc">Показываю черновик. Вносим правки — обычно 1–2 круга, чтобы всё было идеально.</div>
-      <span class="step-tag">1–2 раунда</span>
+      <div class="step-meta">
+        <div class="step-title">Правки</div>
+        <div class="step-desc">Смотрим черновой вариант. Вносим точечные корректировки до идеала.</div>
+        <span class="step-tag">1–2 раунда</span>
+      </div>
     </div>
     <div class="process-step">
       <div class="step-num">04</div>
-      <div class="step-title">Финал</div>
-      <div class="step-desc">Отдаю готовый ролик в нужных форматах. Публикуешь и собираешь охваты.</div>
-      <span class="step-tag">Готовый ролик</span>
+      <div class="step-meta">
+        <div class="step-title">Финал</div>
+        <div class="step-desc">Вы получаете готовое вертикальное видео в максимальном качестве.</div>
+        <span class="step-tag">Готовый ролик</span>
+      </div>
     </div>
   </div>
 
@@ -824,34 +846,32 @@ footer {
     <div class="perk">
       <div class="perk-icon">⏱</div>
       <div class="perk-text">
-        <div class="perk-title">Чёткие дедлайны</div>
-        <div class="perk-desc">Всегда сдаю вовремя. Без задержек и отговорок.</div>
+        <div class="perk-title">Дедлайны</div>
+        <div class="perk-desc">Сдача работы строго в согласованные сроки без задержек.</div>
       </div>
     </div>
     <div class="perk">
       <div class="perk-icon">🎯</div>
       <div class="perk-text">
-        <div class="perk-title">Монтаж с ценностью</div>
-        <div class="perk-desc">Не просто склейка — продуманный монтаж, который работает на цель.</div>
+        <div class="perk-title">Ориентация на цель</div>
+        <div class="perk-desc">Каждая склейка и эффект работают на удержание зрителя.</div>
       </div>
     </div>
     <div class="perk">
       <div class="perk-icon">🤝</div>
       <div class="perk-text">
-        <div class="perk-title">Минимум твоего участия</div>
-        <div class="perk-desc">Снимаешь — я делаю всё остальное. Без лишних согласований.</div>
+        <div class="perk-title">Комфорт работы</div>
+        <div class="perk-desc">Минимум лишних вопросов — бережное отношение к вашему времени.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
 <div class="cta-banner">
-  <div class="cta-text">Готов обсудить<br><span>проект?</span></div>
+  <div class="cta-text">Есть идея для<br><span>проекта?</span></div>
   <a href="https://t.me/yourusername" class="btn-accent" target="_blank" rel="noopener">написать в Telegram →</a>
 </div>
 
-<!-- CONTACTS -->
 <section id="contacts" class="section">
   <div class="section-header">
     <span class="section-num">04</span>
@@ -863,38 +883,37 @@ footer {
     <a class="contact-card" href="https://t.me/yourusername" target="_blank" rel="noopener">
       <span class="contact-platform">Telegram</span>
       <span class="contact-handle">@yourusername</span>
-      <span class="contact-desc">быстрее всего здесь · отвечу в течение часа</span>
+      <span class="contact-desc">Быстрый ответ в течение часа</span>
     </a>
     <a class="contact-card" href="https://instagram.com/yourusername" target="_blank" rel="noopener">
       <span class="contact-platform">Instagram</span>
       <span class="contact-handle">@yourusername</span>
-      <span class="contact-desc">примеры работ в сторис и постах</span>
+      <span class="contact-desc">Процесс работы в сторис</span>
     </a>
     <a class="contact-card" href="mailto:your@email.com">
       <span class="contact-platform">Email</span>
       <span class="contact-handle">your@email.com</span>
-      <span class="contact-desc">для официальных вопросов</span>
+      <span class="contact-desc">Для коммерческих предложений</span>
     </a>
     <a class="contact-card" href="https://vk.com/yourusername" target="_blank" rel="noopener">
       <span class="contact-platform">VKontakte</span>
       <span class="contact-handle">yourusername</span>
-      <span class="contact-desc">портфолио и отзывы</span>
+      <span class="contact-desc">Портфолио и бэкстейджи</span>
     </a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <a href="#hero" class="footer-logo"><span>SAMIR</span>PORTFOLIO</a>
-  <span class="footer-copy">© 2026 · video editor · reels</span>
+  <a href="#hero" class="footer-logo"><span>HEX</span>PORTFOLIO</a>
+  <span class="footer-copy">© 2026 · video editor · portfolio</span>
 </footer>
 
 <script>
-// Видео: при наведении автоматически играет если есть video тег
+// Автовоспроизведение превью-видео при наведении курсора
 document.querySelectorAll('.case-card').forEach(card => {
   const video = card.querySelector('video');
   if (!video) return;
-  card.addEventListener('mouseenter', () => { video.play(); });
+  card.addEventListener('mouseenter', () => { video.play().catch(() => {}); });
   card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
 });
 </script>
