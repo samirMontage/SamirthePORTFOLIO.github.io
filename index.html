@@ -1,768 +1,162 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SamirPORTFOLIO — Монтаж рилсов и шортсов</title>
-<meta name="description" content="Монтирую рилсы, шортсы и вертикальное видео. Быстро, ритмично, с вниманием к деталям.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: #0d0d0d;
-  --surface: #161616;
-  --surface2: #1e1e1e;
-  --border: rgba(255,255,255,0.07);
-  --text: #f0ede8;
-  --muted: rgba(240,237,232,0.4);
-  --accent: #c8392b;
-  --white: #f0ede8;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Manrope', sans-serif;
-  overflow-x: hidden;
-}
-
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.1rem 2.5rem;
-  background: rgba(13,13,13,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
-  color: var(--text);
-  text-decoration: none;
-}
-.logo span { color: var(--accent); }
-.nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a {
-  text-decoration: none;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--text); }
-.nav-avail {
-  display: flex; align-items: center; gap: 6px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-}
-.dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: #27ae60;
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-/* HERO */
-#hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 8rem 2.5rem 4rem;
-  border-bottom: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-}
-.hero-bg-text {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(8rem, 25vw, 20rem);
-  color: rgba(255,255,255,0.03);
-  white-space: nowrap;
-  user-select: none;
-  pointer-events: none;
-  line-height: 1;
-}
-.hero-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 1.5rem;
-  display: flex; align-items: center; gap: 10px;
-}
-.hero-label::before {
-  content: '';
-  display: block;
-  width: 24px; height: 1px;
-  background: var(--muted);
-}
-.hero h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4.5rem, 13vw, 10rem);
-  line-height: 0.9;
-  letter-spacing: 0.01em;
-  margin-bottom: 2.5rem;
-}
-.hero h1 .accent { color: var(--accent); }
-.hero-bottom {
-  display: flex; align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem; flex-wrap: wrap;
-}
-.hero-desc {
-  max-width: 340px;
-  font-size: 0.875rem;
-  line-height: 1.8;
-  color: var(--muted);
-}
-.hero-actions { display: flex; gap: 1rem; align-items: center; }
-.btn-primary {
-  display: inline-block;
-  text-decoration: none;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  padding: 0.8rem 1.75rem;
-  background: var(--text);
-  color: var(--bg);
-  transition: background 0.2s;
-}
-.btn-primary:hover { background: var(--accent); color: #fff; }
-.btn-ghost {
-  display: inline-block;
-  text-decoration: none;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  padding: 0.8rem 1.75rem;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  transition: border-color 0.2s, color 0.2s;
-}
-.btn-ghost:hover { border-color: var(--text); color: var(--text); }
-
-/* TICKER */
-.ticker-wrap {
-  overflow: hidden;
-  padding: 0.8rem 0;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-}
-.ticker-track {
-  display: flex;
-  white-space: nowrap;
-  animation: ticker 22s linear infinite;
-}
-.ticker-track span {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  padding: 0 2rem;
-}
-.ticker-track .sep { color: var(--accent); padding: 0; }
-@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-/* SECTIONS */
-.section { padding: 5rem 2.5rem; }
-.section-header {
-  display: flex; align-items: center; gap: 1.25rem;
-  margin-bottom: 3rem;
-}
-.section-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-}
-.section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  letter-spacing: 0.04em;
-  line-height: 1;
-  color: var(--text);
-}
-.section-line { flex: 1; height: 1px; background: var(--border); }
-
-/* CASES */
-#cases { border-bottom: 1px solid var(--border); }
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-}
-.case-card {
-  background: var(--surface);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  aspect-ratio: 9/14;
-}
-.case-card:first-child {
-  grid-column: span 2;
-  aspect-ratio: 16/7;
-}
-.case-video {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.5s ease;
-}
-.case-card:hover .case-video { transform: scale(1.03); }
-.case-placeholder {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--surface2);
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-}
-.case-overlay {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 1.5rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
-  display: flex; align-items: flex-end; justify-content: space-between;
-}
-.case-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 4px;
-}
-.case-name {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #fff;
-}
-.case-arrow {
-  width: 32px; height: 32px;
-  border: 1px solid rgba(255,255,255,0.3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; color: #fff; flex-shrink: 0;
-  transition: background 0.2s, border-color 0.2s;
-}
-.case-card:hover .case-arrow { background: var(--accent); border-color: var(--accent); }
-
-/* ABOUT */
-#about {
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-.about-inner {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: 5rem; align-items: start;
-}
-.about-photo {
-  width: 100%; aspect-ratio: 3/4;
-  object-fit: cover;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  position: relative;
-}
-.about-photo-label {
-  position: absolute; bottom: 1rem; right: -1rem;
-  background: var(--accent);
-  color: #fff;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 6px 12px;
-}
-.about-lead {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
-  line-height: 1.05;
-  letter-spacing: 0.02em;
-  margin-bottom: 1.75rem;
-  color: var(--text);
-}
-.about-lead .accent { color: var(--accent); }
-.about-body {
-  font-size: 0.9rem;
-  line-height: 1.85;
-  color: var(--muted);
-  margin-bottom: 2rem;
-}
-.about-body p + p { margin-top: 1rem; }
-.about-skills {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin-bottom: 2rem;
-}
-.skill-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  padding: 5px 12px;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  background: var(--bg);
-}
-.about-problems {
-  border: 1px solid var(--border);
-}
-.problem-row {
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-}
-.problem-row:last-child { border-bottom: none; }
-.problem-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 4px;
-  color: var(--text);
-}
-.problem-desc {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* PROCESS */
-#process { border-bottom: 1px solid var(--border); }
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  margin-bottom: 3rem;
-}
-.process-step {
-  background: var(--surface);
-  padding: 2rem 1.5rem;
-}
-.step-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3rem;
-  color: rgba(255,255,255,0.05);
-  line-height: 1;
-  margin-bottom: 1rem;
-}
-.step-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text);
-}
-.step-desc {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  line-height: 1.65;
-  margin-bottom: 1rem;
-}
-.step-tag {
-  display: inline-block;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  padding: 3px 8px;
-  background: var(--surface2);
-  color: var(--muted);
-  border: 1px solid var(--border);
-}
-.process-perks {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-}
-.perk {
-  background: var(--surface);
-  padding: 1.5rem;
-  display: flex; align-items: flex-start; gap: 1rem;
-}
-.perk-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 2px; }
-.perk-title {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 4px;
-  color: var(--text);
-}
-.perk-desc {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* CTA */
-.cta-banner {
-  background: var(--accent);
-  padding: 4rem 2.5rem;
-  display: flex; align-items: center;
-  justify-content: space-between;
-  gap: 2rem; flex-wrap: wrap;
-  border-bottom: 1px solid var(--border);
-}
-.cta-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  letter-spacing: 0.04em;
-  color: #fff;
-  line-height: 1;
-}
-.btn-white {
-  display: inline-block;
-  text-decoration: none;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  padding: 0.875rem 2rem;
-  background: #fff;
-  color: var(--accent);
-  white-space: nowrap;
-  transition: opacity 0.2s;
-}
-.btn-white:hover { opacity: 0.88; }
-
-/* CONTACTS */
-#contacts { background: var(--surface); }
-.contacts-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-}
-.contact-card {
-  background: var(--bg);
-  padding: 2rem;
-  display: flex; flex-direction: column; gap: 0.5rem;
-  text-decoration: none;
-  color: var(--text);
-  transition: background 0.15s;
-  position: relative; overflow: hidden;
-}
-.contact-card::after {
-  content: '↗';
-  position: absolute; top: 1.25rem; right: 1.25rem;
-  font-size: 14px; color: var(--muted);
-  transition: color 0.2s, transform 0.2s;
-}
-.contact-card:hover { background: var(--surface2); }
-.contact-card:hover::after { color: var(--accent); transform: translate(2px,-2px); }
-.contact-platform {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.contact-handle { font-size: 1.1rem; font-weight: 600; color: var(--text); }
-.contact-desc {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  margin-top: 4px;
-}
-
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 1.5rem 2.5rem;
-  display: flex; align-items: center;
-  justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-}
-.footer-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem; letter-spacing: 0.1em;
-  color: var(--text); text-decoration: none;
-}
-.footer-logo span { color: var(--accent); }
-.footer-copy {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px; letter-spacing: 0.08em; color: var(--muted);
-}
-
-@media (max-width: 768px) {
-  nav { padding: 1rem 1.25rem; }
-  .nav-avail { display: none; }
-  .section { padding: 3.5rem 1.25rem; }
-  #hero { padding: 7rem 1.25rem 3rem; }
-  .cases-grid { grid-template-columns: 1fr; }
-  .case-card:first-child { grid-column: span 1; aspect-ratio: 9/14; }
-  .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-  .about-photo-label { right: 0; }
-  .process-grid { grid-template-columns: 1fr 1fr; }
-  .process-perks { grid-template-columns: 1fr; }
-  .contacts-grid { grid-template-columns: 1fr; }
-  .cta-banner { flex-direction: column; align-items: flex-start; }
-  footer { flex-direction: column; text-align: center; align-items: center; }
-}
-@media (max-width: 480px) {
-  .process-grid { grid-template-columns: 1fr; }
-  .hero-actions { flex-direction: column; align-items: flex-start; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex | Premium Video Editor & Montage Creator</title>
+    <!-- Подключаем стили Tailwind и шрифты -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #030303; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(157, 78, 221, 0.3);
+            background: rgba(157, 78, 221, 0.02);
+        }
+    </style>
 </head>
-<body>
+<body class="text-white selection:bg-[#9d4edd] antialiased">
 
-<nav>
-  <a href="#hero" class="logo"><span>SAMIR</span>PORTFOLIO</a>
-  <ul class="nav-links">
-    <li><a href="#cases">работы</a></li>
-    <li><a href="#about">обо мне</a></li>
-    <li><a href="#process">процесс</a></li>
-    <li><a href="#contacts">контакты</a></li>
-  </ul>
-  <div class="nav-avail">
-    <span class="dot"></span>
-    доступен для проектов
-  </div>
-</nav>
-
-<section id="hero">
-  <div class="hero-bg-text" aria-hidden="true">REELS</div>
-  <div class="hero-label">video editor · reels specialist</div>
-  <h1>Монтирую<br>рилсы <span class="accent">&</span><br>шортсы</h1>
-  <div class="hero-bottom">
-    <p class="hero-desc">Превращаю сырой материал в контент, который не скроллят дальше. Ритм, динамика, вовлечение — с первой секунды.</p>
-    <div class="hero-actions">
-      <a href="#cases" class="btn-primary">смотреть работы →</a>
-      <a href="#contacts" class="btn-ghost">написать</a>
-    </div>
-  </div>
-</section>
-
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track">
-    <span>Reels</span><span class="sep">✦</span>
-    <span>Shorts</span><span class="sep">✦</span>
-    <span>Вертикальное видео</span><span class="sep">✦</span>
-    <span>Motion Design</span><span class="sep">✦</span>
-    <span>Color Grading</span><span class="sep">✦</span>
-    <span>Бит-монтаж</span><span class="sep">✦</span>
-    <span>Reels</span><span class="sep">✦</span>
-    <span>Shorts</span><span class="sep">✦</span>
-    <span>Вертикальное видео</span><span class="sep">✦</span>
-    <span>Motion Design</span><span class="sep">✦</span>
-    <span>Color Grading</span><span class="sep">✦</span>
-    <span>Бит-монтаж</span><span class="sep">✦</span>
-  </div>
-</div>
-
-<section id="cases" class="section">
-  <div class="section-header">
-    <span class="section-num">01</span>
-    <h2 class="section-title">Работы</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="cases-grid">
-
-    <div class="case-card">
-      <video class="case-video" src="assets/work1.mp4" loop muted playsinline preload="metadata"></video>
-      <div class="case-overlay">
-        <div class="case-info">
-          <div class="case-tag">Reels · 01</div>
-          <div class="case-name">Работа 1</div>
+    <!-- НАВИГАЦИЯ -->
+    <nav class="fixed top-0 left-0 w-full z-40 border-b border-white/[0.03] bg-black/40 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <span class="text-xl font-black tracking-tighter">HEX<span class="text-[#9d4edd]">.</span></span>
+            <div class="flex items-center space-x-8 text-sm font-medium text-gray-400">
+                <a href="#about" class="hover:text-white transition-colors">Обо мне</a>
+                <a href="#portfolio" class="hover:text-white transition-colors">Работы</a>
+                <a href="#skills" class="hover:text-white transition-colors">Навыки</a>
+                <a href="#contact" class="bg-white text-black px-5 py-2 rounded-full text-xs uppercase font-semibold tracking-wider hover:bg-[#9d4edd] hover:text-white transition-all">Контакты</a>
+            </div>
         </div>
-        <div class="case-arrow">↗</div>
-      </div>
-    </div>
+    </nav>
 
-    <div class="case-card">
-      <video class="case-video" src="assets/work2.mp4" loop muted playsinline preload="metadata"></video>
-      <div class="case-overlay">
-        <div class="case-info">
-          <div class="case-tag">Reels · 02</div>
-          <div class="case-name">Работа 2</div>
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[#9d4edd]/10 rounded-full blur-[130px] pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 pt-20">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/5 mb-8">
+                <span class="w-2 h-2 rounded-full bg-[#9d4edd] animate-pulse"></span>
+                <span class="text-[10px] tracking-[0.2em] uppercase font-semibold text-gray-400">Premium Video Editing</span>
+            </div>
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter uppercase leading-[0.95] mb-8">
+                <span class="block text-white">Digital Agency</span>
+                <span class="block bg-gradient-to-r from-gray-200 via-white to-neutral-500 bg-clip-text text-transparent">Video Editor</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-gray-400 text-base md:text-xl font-normal leading-relaxed mb-12">
+                Создаю высокобюджетную динамику, cinematic edits, gaming монтажи и вирусный контент для Reels/TikTok с акцентом на дорогую картинку и атмосферный саунд-дизайн.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#portfolio" class="px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-[#9d4edd] hover:text-white transition-all">Смотреть работы</a>
+                <a href="#contact" class="px-8 py-4 border border-white/10 rounded-full hover:bg-white/5 transition-all">Связаться</a>
+            </div>
         </div>
-        <div class="case-arrow">↗</div>
-      </div>
-    </div>
+    </section>
 
-    <div class="case-card">
-      <video class="case-video" src="assets/work3.mp4" loop muted playsinline preload="metadata"></video>
-      <div class="case-overlay">
-        <div class="case-info">
-          <div class="case-tag">Reels · 03</div>
-          <div class="case-name">Работа 3</div>
+    <!-- О БО МНЕ -->
+    <section id="about" class="py-24 border-t border-white/[0.02]">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-5">
+                <span class="text-xs uppercase tracking-[0.3em] text-[#9d4edd] font-semibold block mb-2">// 01 . PHILOSOPHY</span>
+                <h2 class="text-4xl font-extrabold uppercase tracking-tighter">Aesthetic In Every Frame</h2>
+            </div>
+            <div class="lg:col-span-7 text-gray-400 text-lg space-y-6 font-light">
+                <p>Привет, я <span class="text-white font-medium">Hex</span>. Я создаю полноценный визуальный опыт, который затягивает зрителя с первой секунды. В индустрии монтажа я ориентируюсь на люксовый минимализм и агрессивный, чистый ритм.</p>
+                <p>Каждый проект — это тонкая работа со звуком, глубокий колоринг (Color Grading) и уникальный Motion Design. Я помогаю брендам, геймерам и инфлюенсерам выглядеть дорого и авторитетно.</p>
+            </div>
         </div>
-        <div class="case-arrow">↗</div>
-      </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-
-<section id="about" class="section">
-  <div class="section-header">
-    <span class="section-num">02</span>
-    <h2 class="section-title">Обо мне</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="about-inner">
-    <div style="position:relative">
-      <!-- замени на: <img style="width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--border)" src="assets/photo.jpg" alt="Samir"> -->
-      <div class="about-photo">твоё фото
-        <div class="about-photo-label">Видеомонтажёр</div>
-      </div>
-    </div>
-    <div>
-      <h3 class="about-lead">Монтажёр,<br>которому<br><span class="accent">доверяют</span></h3>
-      <div class="about-body">
-        <p>Специализируюсь на коротком контенте — рилсах, шортсах, вертикальном видео. Работаю с блогерами, брендами и всеми, кто хочет чтобы их видео смотрели до конца.</p>
-        <p>Понимаю алгоритмы Instagram, TikTok и YouTube Shorts — делаю контент, который платформы продвигают. Каждый ролик это не просто склейка, а продуманная история за 30 секунд.</p>
-      </div>
-      <div class="about-skills">
-        <span class="skill-tag">Premiere Pro</span>
-        <span class="skill-tag">After Effects</span>
-        <span class="skill-tag">CapCut</span>
-        <span class="skill-tag">Цветокоррекция</span>
-        <span class="skill-tag">Motion</span>
-        <span class="skill-tag">Вертикальное видео</span>
-      </div>
-      <div class="about-problems">
-        <div class="problem-row">
-          <div class="problem-title">Контент копится и теряет актуальность</div>
-          <div class="problem-desc">Снимаешь, но не успеваешь монтировать — я возьму это на себя.</div>
+    <!-- ПОРТФОЛИО -->
+    <section id="portfolio" class="py-24 bg-black/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12">
+                <span class="text-xs uppercase tracking-[0.3em] text-[#9d4edd] font-semibold block mb-2">// 02 . ARCHIVE</span>
+                <h2 class="text-4xl font-bold uppercase tracking-tighter">Избранные <span class="text-neutral-500">Работы</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Видео 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <div class="aspect-video w-full bg-neutral-900">
+                        <!-- Замени ТУТ ссылку на свое видео с YouTube (нужна именно ссылка EMBED) -->
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold">Cinematic Showreel</h3>
+                        <p class="text-xs text-gray-500 mt-1">Cinematic Edits</p>
+                    </div>
+                </div>
+                <!-- Видео 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <div class="aspect-video w-full bg-neutral-900">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold">Cyberpunk Gaming Montage</h3>
+                        <p class="text-xs text-gray-500 mt-1">Gaming Edits</p>
+                    </div>
+                </div>
+                <!-- Видео 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <div class="aspect-video w-full bg-neutral-900">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold">Streetwear Brand Promo</h3>
+                        <p class="text-xs text-gray-500 mt-1">Reels / TikTok</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="problem-row">
-          <div class="problem-title">Монтаж отнимает твоё время</div>
-          <div class="problem-desc">Занимайся своим делом — я сделаю всё остальное.</div>
+    </section>
+
+    <!-- НАВЫКИ -->
+    <section id="skills" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12">
+                <span class="text-xs uppercase tracking-[0.3em] text-[#9d4edd] font-semibold block mb-2">// 03 . SKILLS</span>
+                <h2 class="text-4xl font-bold uppercase tracking-tighter">Навыки & Софт</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-2xl glass-card">
+                    <h4 class="text-xl font-bold mb-2">After Effects & Premiere</h4>
+                    <p class="text-sm text-gray-500">Сложный кеинг, трекинг, саунд-дизайн и плавная сборка динамичного сторителинга.</p>
+                </div>
+                <div class="p-6 rounded-2xl glass-card">
+                    <h4 class="text-xl font-bold mb-2">Color Grading</h4>
+                    <p class="text-sm text-gray-500">Работа с пространствами LOG/REC709, создание глубоких киношных лутов (LUTs).</p>
+                </div>
+                <div class="p-6 rounded-2xl glass-card">
+                    <h4 class="text-xl font-bold mb-2">Sound Design</h4>
+                    <p class="text-sm text-gray-500">Многослойное аудио: эмбиент, сочные Foley-эффекты для максимального погружения.</p>
+                </div>
+            </div>
         </div>
-        <div class="problem-row">
-          <div class="problem-title">Видео не дотягивает до уровня</div>
-          <div class="problem-desc">Не хватает динамики и профессиональной подачи — исправлю это.</div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contact" class="py-24 bg-neutral-950/50 text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 class="text-4xl sm:text-6xl font-black uppercase mb-6">Let's create something <span class="text-[#c77dff]">Epic.</span></h2>
+            <p class="text-gray-400 mb-8 font-light">Нужен топовый монтаж? Напиши мне в Telegram или Threads, и мы обсудим твой проект.</p>
+            <div class="flex justify-center gap-4">
+                <!-- Укажи свои ссылки вместо картинок -->
+                <a href="https://t.me/samirtheMontage" target="_blank" class="px-6 py-3 bg-[#0088cc]/20 border border-[#0088cc]/30 rounded-xl hover:bg-[#0088cc]/30 transition-all font-semibold">Telegram</a>
+                <a href="https://www.threads.com/@samirtocreator" target="_blank" class="px-6 py-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all font-semibold">Threads</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="process" class="section">
-  <div class="section-header">
-    <span class="section-num">03</span>
-    <h2 class="section-title">Процесс</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="process-grid">
-    <div class="process-step">
-      <div class="step-num">01</div>
-      <div class="step-title">Задача</div>
-      <div class="step-desc">Присылаешь материал и описываешь задачу. Обсуждаем стиль, формат и детали.</div>
-      <span class="step-tag">Бриф + материалы</span>
-    </div>
-    <div class="process-step">
-      <div class="step-num">02</div>
-      <div class="step-title">Монтаж</div>
-      <div class="step-desc">Собираю ролик: склейка, графика, звук, цветокоррекция. Всё для результата.</div>
-      <span class="step-tag">Premiere + AE</span>
-    </div>
-    <div class="process-step">
-      <div class="step-num">03</div>
-      <div class="step-title">Правки</div>
-      <div class="step-desc">Показываю черновик. Вносим правки — обычно 1–2 круга.</div>
-      <span class="step-tag">1–2 раунда</span>
-    </div>
-    <div class="process-step">
-      <div class="step-num">04</div>
-      <div class="step-title">Финал</div>
-      <div class="step-desc">Отдаю готовый ролик в нужных форматах. Публикуешь и собираешь охваты.</div>
-      <span class="step-tag">Готовый ролик</span>
-    </div>
-  </div>
-  <div class="process-perks">
-    <div class="perk">
-      <div class="perk-icon">⏱</div>
-      <div>
-        <div class="perk-title">Чёткие дедлайны</div>
-        <div class="perk-desc">Всегда сдаю вовремя. Без задержек и отговорок.</div>
-      </div>
-    </div>
-    <div class="perk">
-      <div class="perk-icon">🎯</div>
-      <div>
-        <div class="perk-title">Монтаж с ценностью</div>
-        <div class="perk-desc">Не просто склейка — продуманный монтаж, который работает на цель.</div>
-      </div>
-    </div>
-    <div class="perk">
-      <div class="perk-icon">🤝</div>
-      <div>
-        <div class="perk-title">Минимум твоего участия</div>
-        <div class="perk-desc">Снимаешь — я делаю всё остальное. Без лишних согласований.</div>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- ПОДВАЛ -->
+    <footer class="py-8 border-t border-white/[0.02] text-center text-xs tracking-widest text-gray-600 uppercase">
+        <p>© 2026 Hex Studio. Designed with luxury minimalism.</p>
+    </footer>
 
-<div class="cta-banner">
-  <div class="cta-text">Готов обсудить<br>проект?</div>
-  <a href="https://t.me/yourusername" class="btn-white" target="_blank" rel="noopener">написать в Telegram →</a>
-</div>
-
-<section id="contacts" class="section">
-  <div class="section-header">
-    <span class="section-num">04</span>
-    <h2 class="section-title">Контакты</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="contacts-grid">
-    <a class="contact-card" href="https://t.me/yourusername" target="_blank" rel="noopener">
-      <span class="contact-platform">Telegram</span>
-      <span class="contact-handle">@yourusername</span>
-      <span class="contact-desc">быстрее всего здесь · отвечу в течение часа</span>
-    </a>
-    <a class="contact-card" href="https://instagram.com/yourusername" target="_blank" rel="noopener">
-      <span class="contact-platform">Instagram</span>
-      <span class="contact-handle">@yourusername</span>
-      <span class="contact-desc">примеры работ в сторис и постах</span>
-    </a>
-    <a class="contact-card" href="mailto:your@email.com">
-      <span class="contact-platform">Email</span>
-      <span class="contact-handle">your@email.com</span>
-      <span class="contact-desc">для официальных вопросов</span>
-    </a>
-    <a class="contact-card" href="https://vk.com/yourusername" target="_blank" rel="noopener">
-      <span class="contact-platform">VKontakte</span>
-      <span class="contact-handle">yourusername</span>
-      <span class="contact-desc">портфолио и отзывы</span>
-    </a>
-  </div>
-</section>
-
-<footer>
-  <a href="#hero" class="footer-logo"><span>SAMIR</span>PORTFOLIO</a>
-  <span class="footer-copy">© 2026 · video editor · reels</span>
-</footer>
-
-<script>
-document.querySelectorAll('.case-card').forEach(card => {
-  const video = card.querySelector('video');
-  if (!video) return;
-  card.addEventListener('mouseenter', () => video.play());
-  card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
-});
-</script>
 </body>
 </html>
