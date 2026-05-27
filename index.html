@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SamirToCreator | Portfolio</title>
     <style>
-        /* Оверсайз-минимализм и сброс стилей */
+        /* Передовые стили и кастомный скроллбар */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030303;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1c1c24;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2c2c3b;
         }
 
         body {
@@ -23,20 +37,47 @@
             position: relative;
         }
 
-        /* Интересный и глубокий задний план (Mesh Gradient Glow) */
-        body::before {
-            content: '';
-            position: absolute;
+        /* Анимированный интерактивный фон (Глоу-эффект) */
+        .glow-bg {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 80% 20%, rgba(100, 50, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 15% 50%, rgba(50, 100, 255, 0.06) 0%, transparent 35%),
-                radial-gradient(circle at 50% 80%, rgba(130, 50, 255, 0.05) 0%, transparent 45%);
             z-index: -1;
+            overflow: hidden;
             pointer-events: none;
+        }
+
+        .glow-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.12;
+            mix-blend-mode: screen;
+        }
+
+        .sphere-1 {
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: #6366f1;
+            animation: floatSlow 12s infinite alternate ease-in-out;
+        }
+
+        .sphere-2 {
+            top: 40%;
+            left: -20%;
+            width: 600px;
+            height: 600px;
+            background: #a855f7;
+            animation: floatSlow 18s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes floatSlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, -40px) scale(1.15); }
         }
 
         .container {
@@ -51,78 +92,82 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Премиальная стеклянная шапка */
+        /* Премиальная стеклянная шапка (Умный Flexbox) */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 100;
-            background: rgba(3, 3, 3, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(3, 3, 3, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 18px 0;
+            padding: 20px 0;
         }
 
         header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
         }
 
         .logo {
-            font-weight: 800;
-            font-size: 1.25rem;
+            font-weight: 900;
+            font-size: 1.3rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            background: linear-gradient(45deg, #ffffff, #a1a1aa);
+            background: linear-gradient(45deg, #ffffff, #888893);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            flex-shrink: 0;
         }
 
         nav ul {
             display: flex;
             list-style: none;
             gap: 35px;
+            align-items: center;
         }
 
         nav a {
             font-size: 0.9rem;
             color: #a1a1aa;
             font-weight: 500;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
         }
 
         nav a:hover {
             color: #ffffff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
 
         /* Главный экран */
         .hero {
-            padding: 180px 0 90px;
+            padding: 220px 0 110px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 3.8rem;
+            font-size: 4.2rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 24px;
-            letter-spacing: -1.5px;
-            background: linear-gradient(180deg, #ffffff 60%, rgba(255,255,255,0.6) 100%);
+            letter-spacing: -2px;
+            background: linear-gradient(180deg, #ffffff 50%, rgba(255,255,255,0.5) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            max-width: 850px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #8e8e93;
             max-width: 580px;
-            margin: 0 auto 40px;
+            margin: 0 auto 48px;
             font-weight: 400;
         }
 
@@ -137,43 +182,42 @@
             display: inline-block;
             background-color: #ffffff;
             color: #000000;
-            padding: 16px 38px;
+            padding: 16px 40px;
             border-radius: 40px;
             font-weight: 600;
             font-size: 0.95rem;
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn:hover {
             transform: translateY(-2px);
             background-color: #e5e5ea;
-            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.12);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.15);
         }
 
         .btn-secondary {
             background-color: transparent;
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: none;
         }
 
         .btn-secondary:hover {
             background-color: rgba(255, 255, 255, 0.03);
             border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: none;
         }
 
         /* Секция О себе */
         .about {
-            padding: 90px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 110px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1.6fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
 
@@ -181,100 +225,114 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
         }
 
+        /* Глянцевое неоновое обрамление аватара */
         .about-image {
             width: 100%;
-            max-width: 280px;
+            max-width: 260px;
             aspect-ratio: 1 / 1;
             background: #0d0d11;
-            border-radius: 100px; /* Круглая аккуратная форма для аватара */
+            border-radius: 50%;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            padding: 6px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .about-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
         }
 
         .profile-name {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 800;
             color: #ffffff;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(180deg, #fff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .about-text h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+            font-weight: 800;
             letter-spacing: -0.5px;
         }
 
         .about-text p {
             color: #d1d1d6;
-            font-size: 1.1rem;
-            margin-bottom: 28px;
-            line-height: 1.65;
+            font-size: 1.15rem;
+            margin-bottom: 32px;
+            line-height: 1.7;
         }
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
         }
 
         .skills span {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 8px 16px;
             border-radius: 30px;
             font-size: 0.85rem;
             color: #a1a1aa;
+            transition: all 0.3s ease;
         }
 
-        /* Портфолио (Только чистые видео без надписей) */
+        .skills span:hover {
+            border-color: rgba(255,255,255,0.2);
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Портфолио */
         .portfolio {
-            padding: 90px 0;
+            padding: 110px 0;
         }
 
         .portfolio h2 {
-            font-size: 2.2rem;
-            margin-bottom: 50px;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
             text-align: center;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 35px;
+            gap: 40px;
         }
 
+        /* Эдиторские премиум карточки */
         .project-card {
-            background: #09090b;
-            border-radius: 20px;
+            background: #000000;
+            border-radius: 24px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
         }
 
         .project-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(130, 90, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(100, 50, 255, 0.15);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.05);
         }
 
-        /* Вертикальный контейнер 9:16 */
         .video-container {
             width: 100%;
             aspect-ratio: 9 / 16;
-            background: #000000;
+            background: #050505;
         }
 
         .video-container video {
@@ -286,88 +344,100 @@
 
         /* Подвал */
         footer {
-            padding: 100px 0 50px;
+            padding: 120px 0 60px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         footer h2 {
-            font-size: 2.4rem;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
         .email {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #a1a1aa;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             display: block;
             font-weight: 500;
         }
 
         .email:hover {
             color: #ffffff;
+            text-shadow: 0 0 15px rgba(255,255,255,0.2);
         }
 
         .footer-buttons {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: wrap;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
         .copyright {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #48484a;
-            margin-top: 50px;
+            margin-top: 60px;
             letter-spacing: 0.5px;
         }
 
-        /* Глубокая адаптивность под мобильные телефоны */
+        /* ИДЕАЛЬНАЯ МОБИЛЬНАЯ ОПТИМИЗАЦИЯ */
         @media (max-width: 992px) {
             .about-grid {
                 grid-template-columns: 1fr;
-                gap: 35px;
+                gap: 45px;
                 text-align: center;
             }
-            .about-sidebar {
-                margin: 0 auto;
-            }
-            .skills {
-                justify-content: center;
-            }
+            .about-sidebar { margin: 0 auto; }
+            .skills { justify-content: center; }
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                gap: 24px;
             }
         }
 
         @media (max-width: 768px) {
-            header { padding: 14px 0; }
-            .logo { font-size: 1.15rem; }
-            nav ul { gap: 20px; }
-            
-            .hero { padding: 140px 0 60px; }
-            .hero h1 { font-size: 2.3rem; letter-spacing: -0.8px; }
-            .hero p { font-size: 1.05rem; }
-            
-            /* На мобилках видео выстраиваются в один ряд и не выглядят громоздко */
-            .projects-grid {
-                grid-template-columns: 1fr;
-                max-width: 320px; /* Идеальная ширина вертикального видео на экране телефона */
-                margin: 0 auto;
-                gap: 25px;
+            /* Фикс наложения меню */
+            header {
+                padding: 14px 0;
+            }
+            header .container {
+                flex-direction: column; /* Элементы встают друг под друга без пересечений */
+                gap: 10px;
+            }
+            nav ul {
+                gap: 20px; /* Оптимальные отступы для ссылок */
+            }
+            nav a {
+                font-size: 0.85rem;
             }
             
-            footer h2 { font-size: 1.8rem; }
-            .email { font-size: 1.1rem; }
+            .hero { padding: 160px 0 60px; }
+            .hero h1 { font-size: 2.5rem; letter-spacing: -1px; }
+            .hero p { font-size: 1.1rem; margin-bottom: 35px; }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                max-width: 310px; /* Четкий размер под мобильный экран */
+                margin: 0 auto;
+                gap: 30px;
+            }
+            
+            footer h2 { font-size: 1.9rem; }
+            .email { font-size: 1.15rem; }
             .hero-buttons { flex-direction: column; align-items: center; }
             .btn { width: 100%; max-width: 280px; text-align: center; }
         }
     </style>
 </head>
 <body>
+
+    <div class="glow-bg">
+        <div class="glow-sphere sphere-1"></div>
+        <div class="glow-sphere sphere-2"></div>
+    </div>
 
     <header>
         <div class="container">
