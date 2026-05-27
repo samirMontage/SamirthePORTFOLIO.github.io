@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SamirToCreator | Portfolio</title>
     <style>
-        /* Базовые настройки стиля (Оверсайз-минимализм) */
+        /* Оверсайз-минимализм и сброс стилей */
         * {
             margin: 0;
             padding: 0;
@@ -15,15 +15,32 @@
         }
 
         body {
-            background-color: #050507;
+            background-color: #030303;
             color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* Интересный и глубокий задний план (Mesh Gradient Glow) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(100, 50, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 15% 50%, rgba(50, 100, 255, 0.06) 0%, transparent 35%),
+                radial-gradient(circle at 50% 80%, rgba(130, 50, 255, 0.05) 0%, transparent 45%);
+            z-index: -1;
+            pointer-events: none;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
             padding: 0 24px;
         }
@@ -34,18 +51,18 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Премиальная плавающая шапка */
+        /* Премиальная стеклянная шапка */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 100;
-            background: rgba(5, 5, 7, 0.75);
+            background: rgba(3, 3, 3, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 18px 0;
         }
 
         header .container {
@@ -56,10 +73,10 @@
 
         .logo {
             font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: 1px;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            background: linear-gradient(45deg, #fff, #a1a1aa);
+            background: linear-gradient(45deg, #ffffff, #a1a1aa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -67,13 +84,14 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 40px;
+            gap: 35px;
         }
 
         nav a {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #a1a1aa;
             font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         nav a:hover {
@@ -82,34 +100,36 @@
 
         /* Главный экран */
         .hero {
-            padding: 200px 0 100px;
+            padding: 180px 0 90px;
             text-align: center;
-            background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.03) 0%, transparent 70%);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 800;
-            line-height: 1.15;
+            line-height: 1.1;
             margin-bottom: 24px;
             letter-spacing: -1.5px;
-            max-width: 900px;
+            background: linear-gradient(180deg, #ffffff 60%, rgba(255,255,255,0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            max-width: 850px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: #8e8e93;
-            max-width: 640px;
-            margin: 0 auto 48px;
+            max-width: 580px;
+            margin: 0 auto 40px;
             font-weight: 400;
         }
 
         .hero-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
@@ -117,61 +137,62 @@
             display: inline-block;
             background-color: #ffffff;
             color: #000000;
-            padding: 16px 40px;
+            padding: 16px 38px;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 1rem;
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             background-color: #e5e5ea;
-            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.12);
         }
 
         .btn-secondary {
             background-color: transparent;
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: none;
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.25);
             box-shadow: none;
         }
 
-        /* Секция "О себе" с фото */
+        /* Секция О себе */
         .about {
-            padding: 100px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 90px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
+            grid-template-columns: 1fr 1.6fr;
             gap: 60px;
-            align-items: flex-start;
+            align-items: center;
         }
 
         .about-sidebar {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
         }
 
         .about-image {
             width: 100%;
+            max-width: 280px;
             aspect-ratio: 1 / 1;
-            background: #121214;
-            border-radius: 24px;
+            background: #0d0d11;
+            border-radius: 100px; /* Круглая аккуратная форма для аватара */
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .about-image img {
@@ -181,83 +202,79 @@
         }
 
         .profile-name {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            letter-spacing: -0.3px;
             color: #ffffff;
-            margin-top: 5px;
+            letter-spacing: -0.3px;
         }
 
         .about-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 24px;
+            font-size: 2rem;
+            margin-bottom: 20px;
             font-weight: 700;
             letter-spacing: -0.5px;
         }
 
         .about-text p {
             color: #d1d1d6;
-            font-size: 1.15rem;
-            margin-bottom: 32px;
-            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 28px;
+            line-height: 1.65;
         }
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .skills span {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 8px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
             border-radius: 30px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #a1a1aa;
         }
 
-        /* Портфолио (3 вертикальные работы 9:16) */
+        /* Портфолио (Только чистые видео без надписей) */
         .portfolio {
-            padding: 100px 0;
-            background: linear-gradient(180deg, transparent, rgba(255,255,255,0.01));
+            padding: 90px 0;
         }
 
         .portfolio h2 {
-            font-size: 2.5rem;
-            margin-bottom: 60px;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
             text-align: center;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            gap: 35px;
         }
 
         .project-card {
-            background: #0b0b0d;
-            border-radius: 24px;
+            background: #09090b;
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
         }
 
         .project-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(-6px);
+            border-color: rgba(130, 90, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(100, 50, 255, 0.15);
         }
 
+        /* Вертикальный контейнер 9:16 */
         .video-container {
-            position: relative;
             width: 100%;
             aspect-ratio: 9 / 16;
-            background: #121214;
-            overflow: hidden;
+            background: #000000;
         }
 
         .video-container video {
@@ -267,41 +284,23 @@
             display: block;
         }
 
-        .project-info {
-            padding: 28px;
-            background: #0e0e11;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .project-info h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .project-info p {
-            color: #8e8e93;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
         /* Подвал */
         footer {
-            padding: 120px 0 60px;
+            padding: 100px 0 50px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         footer h2 {
-            font-size: 2.8rem;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
         }
 
         .email {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #a1a1aa;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             display: block;
             font-weight: 500;
         }
@@ -313,45 +312,58 @@
         .footer-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
 
         .copyright {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #48484a;
-            margin-top: 60px;
+            margin-top: 50px;
             letter-spacing: 0.5px;
         }
 
-        /* Адаптивность для мобильных устройств */
+        /* Глубокая адаптивность под мобильные телефоны */
         @media (max-width: 992px) {
             .about-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 35px;
+                text-align: center;
             }
-            .about-image {
-                max-width: 320px;
+            .about-sidebar {
                 margin: 0 auto;
+            }
+            .skills {
+                justify-content: center;
             }
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
+                gap: 20px;
             }
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.4rem; }
+            header { padding: 14px 0; }
+            .logo { font-size: 1.15rem; }
+            nav ul { gap: 20px; }
+            
+            .hero { padding: 140px 0 60px; }
+            .hero h1 { font-size: 2.3rem; letter-spacing: -0.8px; }
+            .hero p { font-size: 1.05rem; }
+            
+            /* На мобилках видео выстраиваются в один ряд и не выглядят громоздко */
             .projects-grid {
                 grid-template-columns: 1fr;
-                max-width: 400px;
+                max-width: 320px; /* Идеальная ширина вертикального видео на экране телефона */
                 margin: 0 auto;
+                gap: 25px;
             }
+            
             footer h2 { font-size: 1.8rem; }
-            nav ul { gap: 20px; }
+            .email { font-size: 1.1rem; }
             .hero-buttons { flex-direction: column; align-items: center; }
-            .btn { width: 100%; max-width: 300px; text-align: center; }
+            .btn { width: 100%; max-width: 280px; text-align: center; }
         }
     </style>
 </head>
@@ -421,10 +433,6 @@
                             Ваш браузер не поддерживает видео.
                         </video>
                     </div>
-                    <div class="project-info">
-                        <h3>Динамичный Reels</h3>
-                        <p>Быстрая склейка, удержание внимания и плотный акцентированный саунд-дизайн.</p>
-                    </div>
                 </div>
 
                 <div class="project-card">
@@ -434,10 +442,6 @@
                             Ваш браузер не поддерживает видео.
                         </video>
                     </div>
-                    <div class="project-info">
-                        <h3>Документальный стиль</h3>
-                        <p>Построение сильного повествования с премиальной графикой и мягкой цветокоррекцией.</p>
-                    </div>
                 </div>
 
                 <div class="project-card">
@@ -446,10 +450,6 @@
                             <source src="work3.mp4" type="video/mp4">
                             Ваш браузер не поддерживает видео.
                         </video>
-                    </div>
-                    <div class="project-info">
-                        <h3>Разговорный контент</h3>
-                        <p>Интеграция плашек, аккуратных субтитров и динамичных перебивок под смыслы спикера.</p>
                     </div>
                 </div>
 
