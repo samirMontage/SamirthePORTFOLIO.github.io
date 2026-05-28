@@ -21,20 +21,26 @@
         }
 
         body {
-            background-color: var(--bg);
+            /* Многослойный глубокий градиент для создания кинематографичного объема */
+            background-color: #020204;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 55%),
+                radial-gradient(circle at 100% 40%, rgba(99, 102, 241, 0.03) 0%, transparent 30%),
+                radial-gradient(circle at 0% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 40%);
+            background-attachment: scroll;
             color: #fff;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Эффект зернистости для текстуры */
+        /* Эффект зернистости для текстуры поверх градиента */
         body::after {
             content: "";
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Noise_Texture.png');
-            opacity: 0.03;
+            opacity: 0.025;
             pointer-events: none;
             z-index: 9999;
         }
@@ -50,7 +56,7 @@
             position: fixed;
             top: 0; width: 100%;
             z-index: 1000;
-            background: rgba(3, 3, 3, 0.8);
+            background: rgba(2, 2, 4, 0.7);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding: 20px 0;
@@ -139,7 +145,7 @@
             border-bottom: 1px solid var(--border);
             overflow: hidden;
             display: flex;
-            opacity: 0.4;
+            opacity: 0.3;
         }
 
         .marquee-track {
@@ -170,47 +176,29 @@
         }
 
         .card {
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.01);
             border: 1px solid var(--border);
             border-radius: 20px;
             overflow: hidden;
             transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            backdrop-filter: blur(10px);
         }
 
         .card:hover {
-            border-color: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.15);
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
         .video-box { aspect-ratio: 9/16; background: #000; }
         .video-box video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Секция Метрик */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 50px;
-        }
-
-        .stat-card {
-            padding: 40px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.03), transparent);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .stat-val { font-size: 3rem; font-weight: 800; margin-bottom: 5px; color: var(--accent); }
-        .stat-label { font-size: 0.8rem; color: #71717a; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Очищенная секция программ/направлений */
+        /* Блок программ и направлений */
         .stack { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; }
         .stack-list { display: flex; justify-content: center; gap: 50px; margin-top: 20px; flex-wrap: wrap; }
         .stack-item { color: #fff; font-weight: 700; font-size: 1.3rem; letter-spacing: -0.5px; }
 
-        /* О себе (Прежний дизайн и текст) */
+        /* О себе */
         .about { padding: 100px 0; border-top: 1px solid var(--border); }
         .about-flex { display: flex; align-items: center; gap: 60px; }
         .about-img { width: 220px; height: 220px; border-radius: 50%; overflow: hidden; border: 4px solid var(--border); flex-shrink: 0; }
@@ -234,29 +222,57 @@
             background: rgba(255,255,255,0.05);
         }
 
-        /* Подвал */
+        /* Подвал и кнопки соцсетей */
         footer { padding: 80px 0; text-align: center; border-top: 1px solid var(--border); }
         footer h3 { font-size: 2rem; margin-bottom: 30px; }
-        .email-link { font-size: 1.5rem; color: #fff; text-decoration: none; border-bottom: 1px solid #fff; }
+        .email-link { font-size: 1.5rem; color: #fff; text-decoration: none; border-bottom: 1px solid #fff; margin-bottom: 40px; display: inline-block; }
+        
+        .footer-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .btn-social {
+            padding: 14px 32px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-social:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+            transform: translateY(-3px);
+            background: rgba(99, 102, 241, 0.1);
+        }
 
         /* Адаптивность для мобилок */
         @media (max-width: 768px) {
             header { padding: 16px 0; }
             header .container { flex-direction: column; gap: 12px; }
             nav ul { gap: 20px; }
-            .grid, .stats { grid-template-columns: 1fr; display: flex; flex-direction: column; }
+            .grid { grid-template-columns: 1fr; display: flex; flex-direction: column; }
             .stack-list { flex-direction: column; gap: 20px; }
             .about-flex { flex-direction: column; text-align: center; }
             .hero { padding: 180px 0 60px; }
             .hero h1 { font-size: 2.5rem; letter-spacing: -1px; }
             .hero p { font-size: 1.1rem; }
-            .projects-grid { max-width: 310px; margin: 0 auto; }
+            .footer-btns { flex-direction: column; align-items: center; gap: 12px; }
+            .btn-social { width: 100%; max-width: 260px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Шапка (Защищенная от наложений) -->
+    <!-- Шапка -->
     <header>
         <div class="container">
             <div class="logo">SamirToCreator</div>
@@ -270,7 +286,7 @@
         </div>
     </header>
 
-    <!-- Главный экран (На русском) -->
+    <!-- Главный экран -->
     <section class="hero">
         <div class="container">
             <h1>Монтаж, который удерживает внимание и продает</h1>
@@ -290,7 +306,7 @@
         </div>
     </div>
 
-    <!-- Портфолио и Метрики -->
+    <!-- Портфолио -->
     <section class="portfolio" id="work">
         <div class="container">
             <div class="grid">
@@ -310,37 +326,21 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Премиальные бизнес-метрики из референсов -->
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="stat-val">12.6%</div>
-                    <div class="stat-label">Average CTR</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-val">8.5M</div>
-                    <div class="stat-label">Minutes Watched</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-val">24h</div>
-                    <div class="stat-label">Avg. Turnaround</div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Измененный блок программ (Остались только чистые козыри) -->
+    <!-- Блок программ и направлений -->
     <section class="stack">
         <div class="container">
             <div class="stack-list">
                 <div class="stack-item">Adobe Premiere Pro</div>
                 <div class="stack-item">After Effects</div>
-                <div class="stack-item">Documentary & Reels</div>
+                <div class="stack-item">Reels</div>
             </div>
         </div>
     </section>
 
-    <!-- Полностью возвращенный прежний блок О себе -->
+    <!-- Блок О себе -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-flex">
@@ -352,7 +352,6 @@
                     <div class="skills">
                         <span>Premiere Pro</span>
                         <span>After Effects</span>
-                        <span>CapCut Pro</span>
                         <span>Sound Design</span>
                         <span>Motion Graphics</span>
                     </div>
@@ -361,15 +360,17 @@
         </div>
     </section>
 
-    <!-- Подвал -->
+    <!-- Подвал (Кнопки стали объемными и кликабельными) -->
     <footer id="contact">
         <div class="container">
             <h3>Давайте создадим что-то крутое</h3>
             <a href="mailto:samir.worj@gmail.com" class="email-link">samir.worj@gmail.com</a>
-            <div style="margin-top: 40px;">
-                <a href="https://t.me/samirtheMontage" target="_blank" style="margin: 0 15px; color: #888; text-decoration: none;">Telegram</a>
-                <a href="https://www.threads.com/@samirtocreator" target="_blank" style="margin: 0 15px; color: #888; text-decoration: none;">Threads</a>
+            
+            <div class="footer-btns">
+                <a href="https://t.me/samirtheMontage" target="_blank" class="btn-social">Telegram</a>
+                <a href="https://www.threads.com/@samirtocreator" target="_blank" class="btn-social">Threads</a>
             </div>
+            
             <p style="margin-top: 60px; color: #333; font-size: 0.8rem;">© 2026 SamirToCreator</p>
         </div>
     </footer>
