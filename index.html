@@ -27,7 +27,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Эффект шума для текстуры */
+        /* Эффект зернистости для текстуры */
         body::after {
             content: "";
             position: fixed;
@@ -89,19 +89,29 @@
 
         /* Главный экран */
         .hero {
-            padding: 220px 0 100px;
+            padding: 240px 0 100px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-size: clamp(2.3rem, 6vw, 4.2rem);
             font-weight: 800;
-            line-height: 1;
-            letter-spacing: -3px;
-            margin-bottom: 30px;
-            background: linear-gradient(180deg, #fff 40%, rgba(255,255,255,0.4));
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #fff 50%, rgba(255,255,255,0.5));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #8e8e93;
+            max-width: 580px;
+            margin: 0 auto 48px;
         }
 
         .hero-btns {
@@ -195,19 +205,34 @@
         .stat-val { font-size: 3rem; font-weight: 800; margin-bottom: 5px; color: var(--accent); }
         .stat-label { font-size: 0.8rem; color: #71717a; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Новая секция My Stack */
-        .stack { padding: 100px 0; text-align: center; }
-        .stack-list { display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
-        .stack-item { color: #a1a1aa; font-weight: 700; font-size: 1.2rem; }
-        .stack-item span { color: #fff; display: block; font-size: 0.7rem; opacity: 0.5; margin-bottom: 5px; }
+        /* Очищенная секция программ/направлений */
+        .stack { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; }
+        .stack-list { display: flex; justify-content: center; gap: 50px; margin-top: 20px; flex-wrap: wrap; }
+        .stack-item { color: #fff; font-weight: 700; font-size: 1.3rem; letter-spacing: -0.5px; }
 
-        /* О себе */
+        /* О себе (Прежний дизайн и текст) */
         .about { padding: 100px 0; border-top: 1px solid var(--border); }
         .about-flex { display: flex; align-items: center; gap: 60px; }
-        .about-img { width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 4px solid var(--border); flex-shrink: 0; }
+        .about-img { width: 220px; height: 220px; border-radius: 50%; overflow: hidden; border: 4px solid var(--border); flex-shrink: 0; }
         .about-img img { width: 100%; height: 100%; object-fit: cover; }
-        .about-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
-        .about-text p { color: #a1a1aa; font-size: 1.1rem; max-width: 600px; }
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 24px; font-weight: 800; }
+        .about-text p { color: #d1d1d6; font-size: 1.15rem; margin-bottom: 32px; line-height: 1.7; }
+        
+        .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skills span {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            transition: all 0.3s ease;
+        }
+        .skills span:hover {
+            border-color: rgba(255,255,255,0.2);
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+        }
 
         /* Подвал */
         footer { padding: 80px 0; text-align: center; border-top: 1px solid var(--border); }
@@ -216,16 +241,22 @@
 
         /* Адаптивность для мобилок */
         @media (max-width: 768px) {
-            header .container { flex-direction: column; gap: 15px; }
-            nav ul { gap: 15px; }
-            .grid, .stats, .stack-list { grid-template-columns: 1fr; display: flex; flex-direction: column; }
+            header { padding: 16px 0; }
+            header .container { flex-direction: column; gap: 12px; }
+            nav ul { gap: 20px; }
+            .grid, .stats { grid-template-columns: 1fr; display: flex; flex-direction: column; }
+            .stack-list { flex-direction: column; gap: 20px; }
             .about-flex { flex-direction: column; text-align: center; }
-            .hero h1 { font-size: 3rem; letter-spacing: -1px; }
+            .hero { padding: 180px 0 60px; }
+            .hero h1 { font-size: 2.5rem; letter-spacing: -1px; }
+            .hero p { font-size: 1.1rem; }
+            .projects-grid { max-width: 310px; margin: 0 auto; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Шапка (Защищенная от наложений) -->
     <header>
         <div class="container">
             <div class="logo">SamirToCreator</div>
@@ -239,16 +270,19 @@
         </div>
     </header>
 
+    <!-- Главный экран (На русском) -->
     <section class="hero">
         <div class="container">
-            <h1>Dynamic Video <br> Production</h1>
+            <h1>Монтаж, который удерживает внимание и продает</h1>
+            <p>Создание визуального контента высшего уровня для брендов и авторов.</p>
             <div class="hero-btns">
-                <a href="https://t.me/samirtheMontage" class="btn btn-primary">Start Project</a>
-                <a href="#work" class="btn" style="border: 1px solid var(--border)">View Reels</a>
+                <a href="https://t.me/samirtheMontage" target="_blank" class="btn btn-primary">Написать в Telegram</a>
+                <a href="https://www.threads.com/@samirtocreator" target="_blank" class="btn" style="border: 1px solid var(--border)">Threads</a>
             </div>
         </div>
     </section>
 
+    <!-- Бегущая строка -->
     <div class="marquee">
         <div class="marquee-track">
             <span>Retention Editing •</span><span>Sound Design •</span><span>Color Grading •</span><span>Viral Motion •</span>
@@ -256,6 +290,7 @@
         </div>
     </div>
 
+    <!-- Портфолио и Метрики -->
     <section class="portfolio" id="work">
         <div class="container">
             <div class="grid">
@@ -276,7 +311,7 @@
                 </div>
             </div>
 
-            <!-- Обновленные метрики из "крутых" референсов -->
+            <!-- Премиальные бизнес-метрики из референсов -->
             <div class="stats">
                 <div class="stat-card">
                     <div class="stat-val">12.6%</div>
@@ -294,37 +329,46 @@
         </div>
     </section>
 
-    <!-- Секция My Stack — фишка профи -->
+    <!-- Измененный блок программ (Остались только чистые козыри) -->
     <section class="stack">
         <div class="container">
             <div class="stack-list">
-                <div class="stack-item"><span>Software</span>Adobe Premiere Pro</div>
-                <div class="stack-item"><span>VFX</span>After Effects</div>
-                <div class="stack-item"><span>Mobile</span>CapCut Pro</div>
-                <div class="stack-item"><span>Style</span>Documentary & Reels</div>
+                <div class="stack-item">Adobe Premiere Pro</div>
+                <div class="stack-item">After Effects</div>
+                <div class="stack-item">Documentary & Reels</div>
             </div>
         </div>
     </section>
 
+    <!-- Полностью возвращенный прежний блок О себе -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-flex">
                 <div class="about-img"><img src="avatar.png" alt="Самир"></div>
                 <div class="about-text">
-                    <h2>Самир</h2>
-                    <p>Создаю видео, которые не просто смотрят, а досматривают. Специализируюсь на динамичном монтаже для YouTube и Reels с упором на удержание аудитории и качественный саунд-дизайн.</p>
+                    <h2>Обо мне</h2>
+                    <p>Я специализируюсь на создании динамичных Reels, контента для YouTube. Моя цель - создавать не просто красивую картинку, а продуманный визуальный продукт с мощным саунд-дизайном, моушн-графикой и удержанием, который решает задачи вашего личного бренда или бизнеса.</p>
+                    
+                    <div class="skills">
+                        <span>Premiere Pro</span>
+                        <span>After Effects</span>
+                        <span>CapCut Pro</span>
+                        <span>Sound Design</span>
+                        <span>Motion Graphics</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Подвал -->
     <footer id="contact">
         <div class="container">
-            <h3>Let's build your brand</h3>
+            <h3>Давайте создадим что-то крутое</h3>
             <a href="mailto:samir.worj@gmail.com" class="email-link">samir.worj@gmail.com</a>
             <div style="margin-top: 40px;">
-                <a href="https://t.me/samirtheMontage" style="margin: 0 15px; color: #888; text-decoration: none;">Telegram</a>
-                <a href="https://www.threads.com/@samirtocreator" style="margin: 0 15px; color: #888; text-decoration: none;">Threads</a>
+                <a href="https://t.me/samirtheMontage" target="_blank" style="margin: 0 15px; color: #888; text-decoration: none;">Telegram</a>
+                <a href="https://www.threads.com/@samirtocreator" target="_blank" style="margin: 0 15px; color: #888; text-decoration: none;">Threads</a>
             </div>
             <p style="margin-top: 60px; color: #333; font-size: 0.8rem;">© 2026 SamirToCreator</p>
         </div>
