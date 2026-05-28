@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SamirToCreator | Portfolio</title>
     <style>
-        /* Передовые стили и кастомный скроллбар */
+        /* Сброс стилей и премиальный темный режим */
         * {
             margin: 0;
             padding: 0;
@@ -21,11 +21,12 @@
             background: #030303;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1c1c24;
+            background: #18181b;
             border-radius: 10px;
+            border: 2px solid #030303;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #2c2c3b;
+            background: #27272a;
         }
 
         body {
@@ -37,7 +38,7 @@
             position: relative;
         }
 
-        /* Анимированный интерактивный фон (Глоу-эффект) */
+        /* Интерактивный живой фон */
         .glow-bg {
             position: fixed;
             top: 0;
@@ -52,32 +53,37 @@
         .glow-sphere {
             position: absolute;
             border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.12;
+            filter: blur(150px);
+            opacity: 0.1;
             mix-blend-mode: screen;
         }
 
         .sphere-1 {
             top: -10%;
             right: -10%;
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             background: #6366f1;
-            animation: floatSlow 12s infinite alternate ease-in-out;
+            animation: float1 15s infinite alternate ease-in-out;
         }
 
         .sphere-2 {
-            top: 40%;
-            left: -20%;
-            width: 600px;
-            height: 600px;
+            top: 50%;
+            left: -15%;
+            width: 550px;
+            height: 550px;
             background: #a855f7;
-            animation: floatSlow 18s infinite alternate-reverse ease-in-out;
+            animation: float2 20s infinite alternate ease-in-out;
         }
 
-        @keyframes floatSlow {
+        @keyframes float1 {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(60px, -40px) scale(1.15); }
+            100% { transform: translate(80px, 40px) scale(1.1); }
+        }
+
+        @keyframes float2 {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-40px, -60px) scale(1.15); }
         }
 
         .container {
@@ -86,22 +92,28 @@
             padding: 0 24px;
         }
 
-        a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Эффект проявления при скролле */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
-        /* Премиальная стеклянная шапка (Умный Flexbox) */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Шапка сайта */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 100;
-            background: rgba(3, 3, 3, 0.75);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: rgba(3, 3, 3, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             padding: 20px 0;
         }
@@ -118,57 +130,53 @@
             font-size: 1.3rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            background: linear-gradient(45deg, #ffffff, #888893);
+            background: linear-gradient(45deg, #ffffff, #71717a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            flex-shrink: 0;
         }
 
         nav ul {
             display: flex;
             list-style: none;
             gap: 35px;
-            align-items: center;
         }
 
         nav a {
             font-size: 0.9rem;
             color: #a1a1aa;
             font-weight: 500;
-            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
 
         nav a:hover {
             color: #ffffff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
 
         /* Главный экран */
         .hero {
-            padding: 220px 0 110px;
+            padding: 240px 0 120px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 4.2rem;
+            font-size: 4.5rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 24px;
-            letter-spacing: -2px;
-            background: linear-gradient(180deg, #ffffff 50%, rgba(255,255,255,0.5) 100%);
+            letter-spacing: -2.5px;
+            background: linear-gradient(180deg, #ffffff 50%, rgba(255,255,255,0.4) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            max-width: 900px;
+            max-width: 950px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: #8e8e93;
-            max-width: 580px;
+            max-width: 600px;
             margin: 0 auto 48px;
-            font-weight: 400;
         }
 
         .hero-buttons {
@@ -182,35 +190,150 @@
             display: inline-block;
             background-color: #ffffff;
             color: #000000;
-            padding: 16px 40px;
+            padding: 16px 42px;
             border-radius: 40px;
             font-weight: 600;
             font-size: 0.95rem;
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn:hover {
             transform: translateY(-2px);
             background-color: #e5e5ea;
-            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.12);
         }
 
         .btn-secondary {
             background-color: transparent;
             color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: none;
         }
 
         .btn-secondary:hover {
             background-color: rgba(255, 255, 255, 0.03);
-            border-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Секция О себе */
+        /* Фишка 1: Бегущая строка (Трендовый кинематографичный элемент) */
+        .marquee-wrapper {
+            background: rgba(255, 255, 255, 0.01);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 24px 0;
+            overflow: hidden;
+            display: flex;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .marquee-content span {
+            margin-right: 50px;
+            background: linear-gradient(90deg, #fff, #52525b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* Раздел: Портфолио */
+        .portfolio {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 60px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .project-card {
+            background: #000000;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(99, 102, 241, 0.04);
+        }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Фишка 2: Блок Цифр / Статистики */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 30px 20px;
+            transition: border 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(180deg, #fff, #71717a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Раздел: О себе */
         .about {
-            padding: 110px 0;
+            padding: 120px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
 
@@ -228,18 +351,15 @@
             gap: 20px;
         }
 
-        /* Глянцевое неоновое обрамление аватара */
         .about-image {
             width: 100%;
-            max-width: 260px;
+            max-width: 250px;
             aspect-ratio: 1 / 1;
-            background: #0d0d11;
             border-radius: 50%;
             overflow: hidden;
-            padding: 6px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            padding: 5px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .about-image img {
@@ -251,17 +371,6 @@
 
         .profile-name {
             font-size: 1.5rem;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-            background: linear-gradient(180deg, #fff, #a1a1aa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .about-text h2 {
-            font-size: 2.2rem;
-            margin-bottom: 24px;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
@@ -282,67 +391,116 @@
         .skills span {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.04);
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 30px;
             font-size: 0.85rem;
             color: #a1a1aa;
-            transition: all 0.3s ease;
         }
 
-        .skills span:hover {
-            border-color: rgba(255,255,255,0.2);
-            color: #fff;
-            background: rgba(255,255,255,0.05);
+        /* Фишка 3: Полноценный блок Воркфлоу (Этапы работы) */
+        .workflow {
+            padding: 120px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        /* Портфолио */
-        .portfolio {
-            padding: 110px 0;
-        }
-
-        .portfolio h2 {
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            text-align: center;
-            letter-spacing: -1px;
-        }
-
-        .projects-grid {
+        .workflow-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
         }
 
-        /* Эдиторские премиум карточки */
-        .project-card {
-            background: #000000;
-            border-radius: 24px;
-            overflow: hidden;
+        .flow-card {
+            background: rgba(255, 255, 255, 0.01);
             border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 24px;
+            padding: 35px 28px;
             position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .project-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.05);
+        .flow-card:hover {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
         }
 
-        .video-container {
-            width: 100%;
-            aspect-ratio: 9 / 16;
-            background: #050505;
-        }
-
-        .video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .flow-num {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
             display: block;
         }
 
-        /* Подвал */
+        .flow-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .flow-card p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Фишка 4: Интерактивный FAQ (Аккордеон) */
+        .faq {
+            padding: 120px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 24px 0;
+            cursor: pointer;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #6366f1;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            color: #71717a;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            color: #a1a1aa;
+            font-size: 1rem;
+            margin-top: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: #ffffff;
+        }
+
+        .faq-item.active .faq-answer {
+            margin-top: 14px;
+        }
+
+        /* Подвал сайта */
         footer {
             padding: 120px 0 60px;
             text-align: center;
@@ -365,7 +523,6 @@
 
         .email:hover {
             color: #ffffff;
-            text-shadow: 0 0 15px rgba(255,255,255,0.2);
         }
 
         .footer-buttons {
@@ -380,49 +537,59 @@
             font-size: 0.85rem;
             color: #48484a;
             margin-top: 60px;
-            letter-spacing: 0.5px;
         }
 
-        /* ИДЕАЛЬНАЯ МОБИЛЬНАЯ ОПТИМИЗАЦИЯ */
+        /* ЖЕСТКАЯ МОБИЛЬНАЯ ОПТИМИЗАЦИЯ — ФИКС НАЛОЖЕНИЙ */
         @media (max-width: 992px) {
             .about-grid {
                 grid-template-columns: 1fr;
-                gap: 45px;
+                gap: 40px;
                 text-align: center;
             }
             .about-sidebar { margin: 0 auto; }
             .skills { justify-content: center; }
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
-            }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .workflow-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
         }
 
         @media (max-width: 768px) {
-            /* Фикс наложения меню */
+            /* Полная перестройка шапки на мобилках */
             header {
-                padding: 14px 0;
+                padding: 16px 0;
             }
             header .container {
-                flex-direction: column; /* Элементы встают друг под друга без пересечений */
-                gap: 10px;
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
             }
             nav ul {
-                gap: 20px; /* Оптимальные отступы для ссылок */
+                gap: 24px;
             }
             nav a {
                 font-size: 0.85rem;
             }
             
-            .hero { padding: 160px 0 60px; }
+            .hero { padding: 180px 0 60px; }
             .hero h1 { font-size: 2.5rem; letter-spacing: -1px; }
-            .hero p { font-size: 1.1rem; margin-bottom: 35px; }
+            .hero p { font-size: 1.1rem; }
+            
+            .section-title { font-size: 2rem; margin-bottom: 40px; }
             
             .projects-grid {
                 grid-template-columns: 1fr;
-                max-width: 310px; /* Четкий размер под мобильный экран */
+                max-width: 310px;
                 margin: 0 auto;
                 gap: 30px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .workflow-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
             
             footer h2 { font-size: 1.9rem; }
@@ -434,24 +601,28 @@
 </head>
 <body>
 
+    <!-- Живой фон -->
     <div class="glow-bg">
         <div class="glow-sphere sphere-1"></div>
         <div class="glow-sphere sphere-2"></div>
     </div>
 
+    <!-- Защищенная от наложений шапка -->
     <header>
         <div class="container">
             <div class="logo">SamirToCreator</div>
             <nav>
                 <ul>
                     <li><a href="#projects">Работы</a></li>
+                    <li><a href="#workflow">Процесс</a></li>
                     <li><a href="#about">Обо мне</a></li>
-                    <li><a href="#contact">Контакты</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- Главный экран -->
     <section class="hero">
         <div class="container">
             <h1>Монтаж, который удерживает внимание и продает</h1>
@@ -463,21 +634,111 @@
         </div>
     </section>
 
-    <section class="about" id="about">
+    <!-- Фишка 1: Бегущая строка -->
+    <div class="marquee-wrapper">
+        <div class="marquee-content">
+            <span>RETENTION EDITING •</span>
+            <span>SOUND DESIGN •</span>
+            <span>MOTION GRAPHICS •</span>
+            <span>COLOR GRADING •</span>
+            <span>DYNAMIC REELS •</span>
+            <span>YOUTUBE CONTENT •</span>
+            <span>RETENTION EDITING •</span>
+            <span>SOUND DESIGN •</span>
+            <span>MOTION GRAPHICS •</span>
+            <span>COLOR GRADING •</span>
+            <span>DYNAMIC REELS •</span>
+            <span>YOUTUBE CONTENT •</span>
+        </div>
+    </div>
+
+    <!-- Секция: Портфолио -->
+    <section class="portfolio reveal" id="projects">
+        <div class="container">
+            <h2 class="section-title">Последние работы</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="video-container">
+                        <video controls playsinline preload="metadata">
+                            <source src="work1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="video-container">
+                        <video controls playsinline preload="metadata">
+                            <source src="work2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="video-container">
+                        <video controls playsinline preload="metadata">
+                            <source src="work3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Фишка 2: Блок статистики под видео -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">10M+</div>
+                    <div class="stat-label">Общих просмотров</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">+45%</div>
+                    <div class="stat-label">Рост удержания</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Готовых проектов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Фишка 3: Процесс работы (Воркфлоу) -->
+    <section class="workflow reveal" id="workflow">
+        <div class="container">
+            <h2 class="section-title">Как строится процесс</h2>
+            <div class="workflow-grid">
+                <div class="flow-card">
+                    <span class="flow-num">01 / Анализ</span>
+                    <h3>Разбор идеи</h3>
+                    <p>Изучаю ваш контент, нишу и целевую аудиторию. Прорабатываем структуру удержания и хуки.</p>
+                </div>
+                <div class="flow-card">
+                    <span class="flow-num">02 / Монтаж</span>
+                    <h3>Черновой кат</h3>
+                    <p>Отбираю лучшие дубли, вырезаю паузы и мусор, выстраиваю динамичный скелет ролика.</p>
+                </div>
+                <div class="flow-card">
+                    <span class="flow-num">03 / Дизайн</span>
+                    <h3>Пак эффектов</h3>
+                    <p>Наложение умных субтитров, анимации, графики, работа с цветом и плотный саунд-дизайн.</p>
+                </div>
+                <div class="flow-card">
+                    <span class="flow-num">04 / Финал</span>
+                    <h3>Готовый продукт</h3>
+                    <p>Финальный рендер в лучшем качестве, готовом к мгновенной загрузке на любые площадки.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция: О себе -->
+    <section class="about reveal" id="about">
         <div class="container">
             <div class="about-grid">
-                
                 <div class="about-sidebar">
                     <div class="about-image">
                         <img src="avatar.png" alt="Самир">
                     </div>
                     <div class="profile-name">Самир</div>
                 </div>
-
                 <div class="about-text">
-                    <h2>Обо мне</h2>
                     <p>Я специализируюсь на создании динамичных Reels, контента для YouTube. Моя цель - создавать не просто красивую картинку, а продуманный визуальный продукт с мощным саунд-дизайном, моушн-графикой и удержанием, который решает задачи вашего личного бренда или бизнеса.</p>
-                    
                     <div class="skills">
                         <span>Premiere Pro</span>
                         <span>After Effects</span>
@@ -486,47 +747,32 @@
                         <span>Motion Graphics</span>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section class="portfolio" id="projects">
+    <!-- Фишка 4: Раскрывающийся FAQ -->
+    <section class="faq reveal" id="faq">
         <div class="container">
-            <h2>Последние работы</h2>
-            <div class="projects-grid">
-                
-                <div class="project-card">
-                    <div class="video-container">
-                        <video controls playsinline preload="metadata">
-                            <source src="work1.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео.
-                        </video>
-                    </div>
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">В каких форматах вы отдаете ролики? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Все видео сдаются в формате MP4 с использованием кодека H.264. Это гарантирует максимальное качество и идеальное отображение как на смартфонах, так и на ПК.</div>
                 </div>
-
-                <div class="project-card">
-                    <div class="video-container">
-                        <video controls playsinline preload="metadata">
-                            <source src="work2.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео.
-                        </video>
-                    </div>
+                <div class="faq-item">
+                    <div class="faq-question">Сколько кругов правок входит в стоимость? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">В стоимость заложены 2 круга бесплатных аргументированных правок по изначальному техзаданию, чтобы мы могли довести ролик до идеала.</div>
                 </div>
-
-                <div class="project-card">
-                    <div class="video-container">
-                        <video controls playsinline preload="metadata">
-                            <source src="work3.mp4" type="video/mp4">
-                            Ваш браузер не поддерживает видео.
-                        </video>
-                    </div>
+                <div class="faq-item">
+                    <div class="faq-question">Каковы средние сроки монтажа одного Reels? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Обычно создание одного динамичного ролика занимает от 24 до 48 часов с момента получения всех исходников и утверждения концепта.</div>
                 </div>
-
             </div>
         </div>
     </section>
 
+    <!-- Подвал -->
     <footer id="contact">
         <div class="container">
             <h2>Давайте создадим что-то крутое</h2>
@@ -539,5 +785,41 @@
         </div>
     </footer>
 
+    <!-- Логика анимаций и Аккордеона -->
+    <script>
+        // Код для раскрытия FAQ
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                if (item.classList.contains('active')) {
+                    item.classList.remove('active');
+                    answer.style.maxHeight = null;
+                } else {
+                    document.querySelectorAll('.faq-item').forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    item.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Код для плавного проявления блоков при скролле
+        const reveals = document.querySelectorAll('.reveal');
+        function revealOnScroll() {
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                const elementVisible = 120;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        // Активируем сразу для видимых элементов при загрузке
+        revealOnScroll();
+    </script>
 </body>
 </html>
